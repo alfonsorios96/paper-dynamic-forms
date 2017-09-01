@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="paper-dynamic-forms">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `paper-dynamic-forms`
+     * This component gets a easy and comfortable way to magives a easy and comfortable way to make dynamics prohectske dynamics projects. E.g. polls
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class PaperDynamicForms extends Polymer.Element {
+      static get is() { return 'paper-dynamic-forms'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'paper-dynamic-forms'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PaperDynamicForms.is, PaperDynamicForms);
+  </script>
+</dom-module>
