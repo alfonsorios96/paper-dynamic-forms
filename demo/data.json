@@ -1,0 +1,30 @@
+{
+  "inputText": [
+    {
+      "label": "Hello"
+    },
+    {
+      "label": "World!"
+    }
+  ],
+  "inputOption": [
+    {
+      "label": "Feelings",
+      "options": [
+        "Happy",
+        "Sad",
+        "Angry",
+        "Scare"
+      ]
+    },
+    {
+      "label": "Colors",
+      "options": [
+        "Red",
+        "Green",
+        "Yellow",
+        "Blue"
+      ]
+    }
+  ]
+}

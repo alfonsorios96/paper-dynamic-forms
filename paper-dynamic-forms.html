@@ -11,8 +11,8 @@
 <dom-module id="paper-dynamic-forms">
     <template>
         <template is="dom-if" if="[[isTextField]]">
-            <template is="dom-repeat" items="[[sentences]]">
-                <paper-input label="[[item]]"></paper-input>
+            <template is="dom-repeat" items="[[sentences]]" as="sentence">
+                <paper-input label="[[sentence.label]]"></paper-input>
             </template>
         </template>
 

@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
 <link rel="import" href="../paper-dynamic-forms.html">
 
@@ -7,13 +8,24 @@
         <style is="custom-style" include="demo-pages-shared-styles">
         </style>
 
+        <iron-ajax
+                auto
+                url="data.json"
+                handle-as="json"
+                on-response="handleResponse"
+                debounce-duration="300"></iron-ajax>
+
         <div class="vertical-section-container centered">
             <h3>Basic demo for paper-dynamic-forms</h3>
             <demo-snippet>
                 <h2>Input text field</h2>
-                <paper-dynamic-forms type="text-input" sentences="[[sentencesForText]]"></paper-dynamic-forms>
+                <span>Please read all the properties for this element <a
+                        href="https://www.webcomponents.org/element/PolymerElements/paper-input/elements/paper-input#properties">here</a></span>
+                <paper-dynamic-forms type="text-input"
+                                     sentences="[[responseRequest.inputText]]"></paper-dynamic-forms>
                 <h2>Select field</h2>
-                <paper-dynamic-forms type="option-input" sentences="[[sentencesForOptions]]"></paper-dynamic-forms>
+                <paper-dynamic-forms type="option-input"
+                                     sentences="[[responseRequest.inputOption]]"></paper-dynamic-forms>
             </demo-snippet>
         </div>
     </template>
@@ -36,22 +48,13 @@
 
                 static get properties() {
                     return {
-                        sentencesForText: {
-                            type: Array,
-                            value: ['Hello', 'World !']
-                        },
-                        sentencesForOptions: {
-                            type: Array,
-                            value: [{
-                                label: 'Feelings',
-                                options: ['Happy', 'Sad', 'Scare']
-                            },
-                                {
-                                    label: 'Colors',
-                                    options: ['Red', 'Green', 'Yellow']
-                                }]
-                        }
+                        responseRequest: Object
                     };
+                }
+
+                handleResponse(event) {
+                    this.set('responseRequest', event.detail.__data.response);
+                    console.log(this.responseRequest);
                 }
             }
 
