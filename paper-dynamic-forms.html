@@ -1,36 +1,87 @@
-<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="./bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="./bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="./bower_components/polymer/lib/elements/dom-if.html">
+
+<link rel="import" href="./bower_components/paper-input/paper-input.html">
+<link rel="import" href="./bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="./bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="./bower_components/paper-item/paper-item.html">
 
 <dom-module id="paper-dynamic-forms">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <template>
+        <template is="dom-if" if="[[isTextField]]">
+            <template is="dom-repeat" items="[[sentences]]">
+                <paper-input label="[[item]]"></paper-input>
+            </template>
+        </template>
 
-  <script>
-    /**
-     * `paper-dynamic-forms`
-     * This component gets a easy and comfortable way to magives a easy and comfortable way to make dynamics prohectske dynamics projects. E.g. polls
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
-    class PaperDynamicForms extends Polymer.Element {
-      static get is() { return 'paper-dynamic-forms'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'paper-dynamic-forms'
-          }
-        };
-      }
-    }
+        <template is="dom-if" if="[[isOptionField]]">
+            <template is="dom-repeat" items="[[sentences]]" as="sentence">
+                <paper-dropdown-menu label="[[sentence.label]]">
+                    <paper-listbox slot="dropdown-content">
+                        <template is="dom-repeat" items="[[sentence.options]]" as="option">
+                            <paper-item>[[option]]</paper-item>
+                        </template>
+                    </paper-listbox>
+                </paper-dropdown-menu>
+            </template>
+        </template>
+    </template>
 
-    window.customElements.define(PaperDynamicForms.is, PaperDynamicForms);
-  </script>
+    <script>
+        'use strict';
+        (function PaperDynamicFormsDefinition(customElements) {
+            /**
+             * `paper-dynamic-forms`
+             * This component gives a easy and comfortable way to magives a easy and comfortable way to make dynamics prohectske dynamics projects. E.g. polls
+             *
+             * @customElement
+             * @polymer
+             * @demo demo/index.html
+             */
+            class PaperDynamicForms extends Polymer.Element {
+                static get is() {
+                    return 'paper-dynamic-forms';
+                }
+
+                static get properties() {
+                    return {
+                        type: String,
+                        sentences: {
+                            type: Array
+                        },
+                        options: Array,
+                        // Computed properties
+                        isTextField: {
+                            type: Boolean,
+                            computed: '_isTextField(type)'
+                        },
+                        isOptionField: {
+                            type: Boolean,
+                            computed: '_isOptionField(type)'
+                        }
+                    };
+                }
+
+                _isTextField(type) {
+                    if (type === 'text-input') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+
+                _isOptionField(type) {
+                    if (type === 'option-input') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+            customElements.define(PaperDynamicForms.is, PaperDynamicForms);
+        })(window.customElements);
+    </script>
 </dom-module>

@@ -1,0 +1,60 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+<link rel="import" href="../bower_components/iron-demo-helpers/demo-snippet.html">
+
+<link rel="import" href="../paper-dynamic-forms.html">
+
+<dom-module id="demo-element">
+    <template>
+        <style is="custom-style" include="demo-pages-shared-styles">
+        </style>
+
+        <div class="vertical-section-container centered">
+            <h3>Basic demo for paper-dynamic-forms</h3>
+            <demo-snippet>
+                <h2>Input text field</h2>
+                <paper-dynamic-forms type="text-input" sentences="[[sentencesForText]]"></paper-dynamic-forms>
+                <h2>Select field</h2>
+                <paper-dynamic-forms type="option-input" sentences="[[sentencesForOptions]]"></paper-dynamic-forms>
+            </demo-snippet>
+        </div>
+    </template>
+
+    <script>
+        'use strict';
+        (function PaperDynamicFormsDefinition(customElements) {
+            /**
+             * `paper-dynamic-forms`
+             * This component gives a easy and comfortable way to magives a easy and comfortable way to make dynamics prohectske dynamics projects. E.g. polls
+             *
+             * @customElement
+             * @polymer
+             * @demo demo/index.html
+             */
+            class DemoElement extends Polymer.Element {
+                static get is() {
+                    return 'demo-element';
+                }
+
+                static get properties() {
+                    return {
+                        sentencesForText: {
+                            type: Array,
+                            value: ['Hello', 'World !']
+                        },
+                        sentencesForOptions: {
+                            type: Array,
+                            value: [{
+                                label: 'Feelings',
+                                options: ['Happy', 'Sad', 'Scare']
+                            }]
+                        }
+                    };
+                }
+            }
+
+            customElements.define(DemoElement.is, DemoElement);
+        })(window.customElements);
+    </script>
+</dom-module>
