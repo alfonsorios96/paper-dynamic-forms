@@ -7,6 +7,8 @@
 <link rel="import" href="./bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="./bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="./bower_components/paper-item/paper-item.html">
+<link rel="import" href="./bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="./bower_components/iron-label/iron-label.html">
 
 <dom-module id="paper-dynamic-forms">
     <template>
@@ -27,6 +29,17 @@
                 </paper-dropdown-menu>
             </template>
         </template>
+
+        <template is="dom-if" if="[[isCheckboxField]]">
+            <template is="dom-repeat" items="[[sentences]]" as="sentence">
+                <h3>[[sentence.label]]</h3>
+                <template is="dom-repeat" items="[[sentence.options]]" as="option">
+                    <paper-checkbox>[[option]]</paper-checkbox>
+                </template>
+            </template>
+        </template>
+
+
     </template>
 
     <script>
@@ -60,6 +73,10 @@
                         isOptionField: {
                             type: Boolean,
                             computed: '_isOptionField(type)'
+                        },
+                        isCheckboxField: {
+                            type: Boolean,
+                            computed: '_isCheckboxField(type)'
                         }
                     };
                 }
@@ -74,6 +91,14 @@
 
                 _isOptionField(type) {
                     if (type === 'option-input') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+
+                _isCheckboxField(type) {
+                    if (type === 'checkbox-input') {
                         return true;
                     } else {
                         return false;

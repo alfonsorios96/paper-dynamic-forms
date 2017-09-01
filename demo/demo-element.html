@@ -26,6 +26,9 @@
                 <h2>Select field</h2>
                 <paper-dynamic-forms type="option-input"
                                      sentences="[[responseRequest.inputOption]]"></paper-dynamic-forms>
+                <paper-dynamic-forms type="option-input" sentences="[[sentencesForOptions]]"></paper-dynamic-forms>
+                <h2>Checkbox field</h2>
+                <paper-dynamic-forms type="checkbox-input" sentences="[[sentencesForCheckbox]]"></paper-dynamic-forms>
             </demo-snippet>
         </div>
     </template>
@@ -48,8 +51,16 @@
 
                 static get properties() {
                     return {
-                        responseRequest: Object
-                    };
+                        responseRequest: Object,
+                        sentencesForCheckbox: {
+                            type: Array,
+                            value:
+                                [{
+                                    label: 'Title',
+                                    options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+                                }]
+                        }
+                    }
                 }
 
                 handleResponse(event) {
