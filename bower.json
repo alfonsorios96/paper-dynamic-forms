@@ -9,7 +9,9 @@
     "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
     "paper-item": "PolymerElements/paper-item#^2.0.0",
     "iron-ajax": "PolymerElements/iron-ajax#^2.0.5",
-    "paper-checkbox": "^2.0.1"
+    "paper-checkbox": "^2.0.1",
+    "paper-radio-button": "^2.0.0",
+    "paper-radio-group": "^2.0.0"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",

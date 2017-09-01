@@ -26,5 +26,41 @@
         "Blue"
       ]
     }
+  ],
+  "inputCheckbox": [
+    {
+      "label": "Title",
+      "options": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6"
+      ]
+    },{
+      "label": "Subtitle",
+      "options": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6"
+      ]
+    }
+  ],
+  "inputRadioButton": [
+    {
+      "label": "Radio title",
+      "options": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f"
+      ]
+    }
   ]
 }
