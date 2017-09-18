@@ -1,29 +1,17 @@
 {
   "inputText": [
     {
-      "label": "Hello"
-    },
-    {
-      "label": "World!"
+      "label": "Input a label for your form field"
     }
   ],
   "inputOption": [
     {
-      "label": "Feelings",
+      "label": "Select a form type",
       "options": [
-        "Happy",
-        "Sad",
-        "Angry",
-        "Scare"
-      ]
-    },
-    {
-      "label": "Colors",
-      "options": [
-        "Red",
-        "Green",
-        "Yellow",
-        "Blue"
+        "text-input",
+        "option-input",
+        "checkbox-input",
+        "radio-button-input"
       ]
     }
   ],

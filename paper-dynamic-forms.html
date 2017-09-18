@@ -16,13 +16,13 @@
     <template>
         <template is="dom-if" if="[[isTextField]]">
             <template is="dom-repeat" items="[[sentences]]" as="sentence">
-                <paper-input label="[[sentence.label]]"></paper-input>
+                <paper-input label="[[sentence.label]]" on-value-changed="textHandler"></paper-input>
             </template>
         </template>
 
         <template is="dom-if" if="[[isOptionField]]">
             <template is="dom-repeat" items="[[sentences]]" as="sentence">
-                <paper-dropdown-menu label="[[sentence.label]]">
+                <paper-dropdown-menu label="[[sentence.label]]" on-value-changed="optionSelectedHandler">
                     <paper-listbox slot="dropdown-content">
                         <template is="dom-repeat" items="[[sentence.options]]" as="option">
                             <paper-item>[[option]]</paper-item>
@@ -96,6 +96,31 @@
                         }
                     };
                 }
+
+                optionSelectedHandler(event) {
+                    let payload = {
+                        model: event.model,
+                        option: event.detail.value
+                    };
+                    this.dispatchEvent(new CustomEvent('option-input-response', {
+                        bubbles: true,
+                        composed: true,
+                        detail: payload
+                    }));
+                }
+
+                textHandler(event) {
+                    let payload = {
+                        model: event.model,
+                        option: event.detail.value
+                    };
+                    this.dispatchEvent(new CustomEvent('text-input-response', {
+                        bubbles: true,
+                        composed: true,
+                        detail: payload
+                    }));
+                }
+
 
                 _isTextField(type) {
                     if (type === 'text-input') {
