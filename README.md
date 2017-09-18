@@ -1,3 +1,4 @@
+
 # Paper Dynamic Forms
 
 This web component gives to the frontend developer a tool to create polls, quiz and other kinds of forms dynamically.
@@ -8,10 +9,28 @@ This web component gives to the frontend developer a tool to create polls, quiz 
 
 ## Usage
 
-Just install dependencies for your elements.
-Eg. If you use a text-input so install paper-input
-This version provides you support for paper-input, paper-dropdown-menu, paper-checkbox & paper-radio-button
+```html
+<paper-dynamic-forms type="text-input" sentences="[[config]]"></paper-dynamic-forms>
+```
 
+The diffents types are: "text-input", "option-input", "checkbox-input" and "radio-button-input"
+
+The attribute 'sentences' is an array that defines the fields to make.
+
+Of course, in change of a js array config, you can use a Polymer array inside your own web component.
+
+Other idea is use iron-ajax and a JSON file for declare your forms definitions and get it in a object, then use it with this component.
+
+```js
+let config = [{
+    label: 'Some label',
+    options: ['option a', 'option b', 'option c']
+}];
+```
+
+Inside of config (or whatever you want named) has two properties.
+The first one defines the placeholder or label to display to the user and the other one (options)
+is a string array with the options for the fields need it. E.g. checkbox-input or option-input.
 
 
 ## Contributing
@@ -28,7 +47,9 @@ We're (Aldo and me) were borried, so we decided contribute to the Polymer commun
 
 ## Credits
 
-Aldo Aldaco and Alfonso R?os
+Aldo Aldaco and Alfonso Ríos
+@aldoaldaco
+@alfonsorios96
 
 ## License
 
