@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-if.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 
@@ -7,6 +8,13 @@
 <dom-module id="demo-element">
     <template>
         <style is="custom-style" include="demo-pages-shared-styles">
+        </style>
+
+        <style>
+            paper-button.fancy {
+                background-color: var(--paper-green-500);
+                color: white;
+            }
         </style>
 
         <iron-ajax
@@ -18,19 +26,22 @@
 
         <div class="vertical-section-container centered">
             <h3>Basic demo for paper-dynamic-forms</h3>
-            <demo-snippet>
-                <paper-dynamic-forms type="option-input"
-                                     sentences="[[responseRequest.inputOption]]"
-                                     on-option-input-response="handler"></paper-dynamic-forms>
-                <paper-dynamic-forms type="text-input" sentences="[[responseRequest.inputText]]"
+            <paper-dynamic-forms type="option-input"
+                                 sentences="[[response.inputOption]]"
+                                 on-option-input-response="handler"></paper-dynamic-forms>
+            <paper-dynamic-forms type="text-input" sentences="[[response.inputText]]"
+                                 on-text-input-response="handler"></paper-dynamic-forms>
+            <template is="dom-if" if="[[hasOptions]]">
+                <paper-dynamic-forms type="text-input"
+                                     sentences="[[response.options]]"
                                      on-text-input-response="handler"></paper-dynamic-forms>
-                <paper-button on-tap="createField">Create form field</paper-button>
-                <hr>
-                <h2>Your awesome form</h2>
-                <paper-dynamic-forms
-                        type="[[type]]"
-                        sentences="[[sentences]]"></paper-dynamic-forms>
-            </demo-snippet>
+            </template>
+            <paper-button class="fancy" on-tap="createField">Create form field</paper-button>
+            <hr>
+            <h2>Your awesome form</h2>
+            <paper-dynamic-forms
+                    type="[[type]]"
+                    sentences="[[sentences]]"></paper-dynamic-forms>
         </div>
     </template>
 
@@ -52,32 +63,78 @@
 
                 static get properties() {
                     return {
-                        responseRequest: Object,
-                        type: String,
-                        sentence: Object,
+                        response: Object,
+                        type: {
+                            type: String,
+                            observer: 'changeType'
+                        },
+                        sentence: {
+                            type: Object,
+                            value: {
+                                label: '',
+                                options: []
+                            }
+                        },
+                        optionA: String,
+                        optionB: String,
+                        optionC: String,
+                        optionD: String,
                         sentences: {
                             type: Array,
                             value: []
+                        },
+                        hasOptions: {
+                            type: Boolean,
+                            value: false
                         }
                     }
                 }
 
                 handleResponse(event) {
-                    this.set('responseRequest', event.detail.response);
+                    this.set('response', event.detail.response);
                 }
 
                 createField() {
+                    this.push('sentence.options', this.optionA);
+                    this.push('sentence.options', this.optionB);
+                    this.push('sentence.options', this.optionC);
+                    this.push('sentence.options', this.optionD);
                     this.push('sentences', this.sentence);
+                    this.set('sentence', {
+                        label: '',
+                        options: []
+                    });
                 }
 
                 handler(payload) {
-                    if (payload.detail.model.sentence.label === 'Select a form type') {
-                        this.set('type', payload.detail.option);
+                    switch (payload.detail.model.sentence.label) {
+                        case 'Select a form type':
+                            this.set('type', payload.detail.option);
+                            break;
+                        case 'Input a label for your form field':
+                            this.set('sentence.label', payload.detail.option);
+                            break;
+                        case 'First option':
+                            this.set('optionA', payload.detail.option);
+                            break;
+                        case 'Second option':
+                            this.set('optionB', payload.detail.option);
+                            break;
+                        case 'Third option':
+                            this.set('optionC', payload.detail.option);
+                            break;
+                        case 'Fourth option':
+                            this.set('optionD', payload.detail.option);
+                            break;
+
                     }
-                    if (payload.detail.model.sentence.label === 'Input a label for your form field') {
-                        this.set('sentence', {
-                            label: payload.detail.option
-                        });
+                }
+
+                changeType(newValue, oldValue) {
+                    if (newValue === 'text-input') {
+                        this.set('hasOptions', false);
+                    } else {
+                        this.set('hasOptions', true);
                     }
                 }
             }
