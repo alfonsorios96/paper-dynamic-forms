@@ -14,44 +14,49 @@
 
 <dom-module id="paper-dynamic-forms">
     <template>
-        <template is="dom-if" if="[[isTextField]]">
-            <template is="dom-repeat" items="[[sentences]]" as="sentence">
-                <paper-input label="[[sentence.label]]" on-value-changed="textHandler"></paper-input>
-            </template>
-        </template>
+        <style>
+            .container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+            .item {
+                margin-right: 15px;
+            }
+        </style>
+        <div class="container">
+            <template is="dom-repeat" items="[[config]]">
+                <template is="dom-if" if="[[isTextForm(item)]]">
+                    <paper-input class="item" label="[[item.label]]" on-value-changed="textHandler"></paper-input>
+                </template>
 
-        <template is="dom-if" if="[[isOptionField]]">
-            <template is="dom-repeat" items="[[sentences]]" as="sentence">
-                <paper-dropdown-menu label="[[sentence.label]]" on-value-changed="optionSelectedHandler">
-                    <paper-listbox slot="dropdown-content">
-                        <template is="dom-repeat" items="[[sentence.options]]" as="option">
-                            <paper-item>[[option]]</paper-item>
+                <template is="dom-if" if="[[isOptionForm(item)]]">
+                    <paper-dropdown-menu label="[[item.label]]" on-value-changed="optionSelectedHandler">
+                        <paper-listbox slot="dropdown-content">
+                            <template is="dom-repeat" items="[[item.options]]" as="option">
+                                <paper-item class="item">[[option]]</paper-item>
+                            </template>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                </template>
+
+                <template is="dom-if" if="[[isCheckboxForm(item)]]">
+                    <h3>[[item.label]]</h3>
+                    <template is="dom-repeat" items="[[item.options]]" as="option">
+                        <paper-checkbox class="item">[[option]]</paper-checkbox>
+                    </template>
+                </template>
+
+                <template is="dom-if" if="[[isRadioButtonForm(item)]]">
+                    <h3>[[sentence.label]]</h3>
+                    <paper-radio-group>
+                        <template is="dom-repeat" items="[[item.options]]" as="option">
+                            <paper-radio-button class="item" name="[[option]]">[[option]]</paper-radio-button>
                         </template>
-                    </paper-listbox>
-                </paper-dropdown-menu>
-            </template>
-        </template>
-
-        <template is="dom-if" if="[[isCheckboxField]]">
-            <template is="dom-repeat" items="[[sentences]]" as="sentence">
-                <h3>[[sentence.label]]</h3>
-                <template is="dom-repeat" items="[[sentence.options]]" as="option">
-                    <paper-checkbox>[[option]]</paper-checkbox>
+                    </paper-radio-group>
                 </template>
             </template>
-        </template>
-
-        <template is="dom-if" if="[[isRadioButtonField]]">
-            <template is="dom-repeat" items="[[sentences]]" as="sentence">
-                <h3>[[sentence.label]]</h3>
-                <paper-radio-group>
-                    <template is="dom-repeat" items="[[sentence.options]]" as="option">
-                        <paper-radio-button name="[[option]]">[[option]]</paper-radio-button>
-                    </template>
-                </paper-radio-group>
-            </template>
-        </template>
-
+        </div>
     </template>
 
     <script>
@@ -72,29 +77,42 @@
 
                 static get properties() {
                     return {
-                        type: String,
-                        sentences: {
+                        config: {
                             type: Array
-                        },
-                        options: Array,
-                        // Computed properties
-                        isTextField: {
-                            type: Boolean,
-                            computed: '_isTextField(type)'
-                        },
-                        isOptionField: {
-                            type: Boolean,
-                            computed: '_isOptionField(type)'
-                        },
-                        isCheckboxField: {
-                            type: Boolean,
-                            computed: '_isCheckboxField(type)'
-                        },
-                        isRadioButtonField: {
-                            type: Boolean,
-                            computed: '_isRadioButtonField(type)'
                         }
                     };
+                }
+
+                isTextForm(item){
+                    if(item.type === 'text-input'){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+
+                isOptionForm(item){
+                    if(item.type === 'option-input'){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+
+                isCheckboxForm(item){
+                    if(item.type === 'checkbox-input'){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+
+                isRadioButtonForm(item){
+                    if(item.type === 'radio-button-input'){
+                        return true;
+                    }else{
+                        return false;
+                    }
                 }
 
                 optionSelectedHandler(event) {
@@ -119,39 +137,6 @@
                         composed: true,
                         detail: payload
                     }));
-                }
-
-
-                _isTextField(type) {
-                    if (type === 'text-input') {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-
-                _isOptionField(type) {
-                    if (type === 'option-input') {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-
-                _isCheckboxField(type) {
-                    if (type === 'checkbox-input') {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-
-                _isRadioButtonField(type){
-                    if (type === 'radio-button-input') {
-                        return true;
-                    } else {
-                        return false;
-                    }
                 }
             }
 
