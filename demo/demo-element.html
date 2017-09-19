@@ -1,7 +1,6 @@
 <link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../../polymer/lib/mixins/gesture-event-listeners.html">
 <link rel="import" href="../../polymer/lib/elements/dom-if.html">
-
 <link rel="import" href="../../iron-ajax/iron-ajax.html">
 
 <link rel="import" href="../paper-dynamic-forms.html">
@@ -9,13 +8,6 @@
 <dom-module id="demo-element">
     <template>
         <style is="custom-style" include="demo-pages-shared-styles">
-        </style>
-
-        <style>
-            .container {
-                display: flex;
-                flex-direction: row;
-            }
         </style>
 
         <iron-ajax
@@ -27,25 +19,25 @@
 
         <div class="vertical-section-container centered">
             <h3>Basic demo for paper-dynamic-forms</h3>
-            <paper-dynamic-forms type="option-input"
-                                 sentences="[[response.inputOption]]"
-                                 on-option-input-response="handler"></paper-dynamic-forms>
-            <paper-dynamic-forms type="text-input" sentences="[[response.inputText]]"
-                                 on-text-input-response="handler"></paper-dynamic-forms>
-            <div class="container">
-                <template is="dom-if" if="[[hasOptions]]">
-                    <paper-dynamic-forms type="text-input"
-                                         sentences="[[response.options]]"
-                                         on-text-input-response="handler"></paper-dynamic-forms>
-                </template>
-            </div>
+
+            <paper-dynamic-forms config="[[response]]"
+                                 on-option-input-response="handler"
+                                 on-text-input-response="handler">
+            </paper-dynamic-forms>
+
+            <template is="dom-if" if="[[hasOptions]]">
+                <paper-dynamic-forms config="[[options]]"
+                                     on-text-input-response="handler">
+                </paper-dynamic-forms>
+            </template>
 
             <button on-tap="createField">Create form field</button>
+
             <hr>
             <h2>Your awesome form</h2>
             <paper-dynamic-forms
-                    type="[[type]]"
-                    sentences="[[sentences]]"></paper-dynamic-forms>
+                    config="[[sentences]]"></paper-dynamic-forms>
+
         </div>
     </template>
 
@@ -65,17 +57,15 @@
                     return 'demo-element';
                 }
 
-                static get properties() {
+                static get properties()
+                {
                     return {
                         response: Object,
-                        type: {
-                            type: String,
-                            observer: 'changeType'
-                        },
                         sentence: {
                             type: Object,
                             value: {
                                 label: '',
+                                type: '',
                                 options: []
                             }
                         },
@@ -90,15 +80,38 @@
                         hasOptions: {
                             type: Boolean,
                             value: false
+                        },
+                        options: {
+                            type: Array,
+                            value: [
+                                {
+                                    "label": "First option",
+                                    "type": "text-input"
+                                },
+                                {
+                                    "label": "Second option",
+                                    "type": "text-input"
+                                },
+                                {
+                                    "label": "Third option",
+                                    "type": "text-input"
+                                },
+                                {
+                                    "label": "Fourth option",
+                                    "type": "text-input"
+                                }
+                            ]
                         }
                     }
                 }
 
-                handleResponse(event) {
+                handleResponse(event)
+                {
                     this.set('response', event.detail.response);
                 }
 
-                createField() {
+                createField()
+                {
                     this.push('sentence.options', this.optionA);
                     this.push('sentence.options', this.optionB);
                     this.push('sentence.options', this.optionC);
@@ -106,14 +119,21 @@
                     this.push('sentences', this.sentence);
                     this.set('sentence', {
                         label: '',
+                        type: '',
                         options: []
                     });
                 }
 
-                handler(payload) {
-                    switch (payload.detail.model.sentence.label) {
+                handler(payload)
+                {
+                    switch (payload.detail.model.item.label) {
                         case 'Select a form type':
-                            this.set('type', payload.detail.option);
+                            this.set('sentence.type', payload.detail.option);
+                            if(this.sentence.type !== 'text-input'){
+                                this.set('hasOptions', true);
+                            } else {
+                                this.set('hasOptions', false);
+                            }
                             break;
                         case 'Input a label for your form field':
                             this.set('sentence.label', payload.detail.option);
@@ -131,14 +151,6 @@
                             this.set('optionD', payload.detail.option);
                             break;
 
-                    }
-                }
-
-                changeType(newValue, oldValue) {
-                    if (newValue === 'text-input') {
-                        this.set('hasOptions', false);
-                    } else {
-                        this.set('hasOptions', true);
                     }
                 }
             }
