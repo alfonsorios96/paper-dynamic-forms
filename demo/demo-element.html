@@ -19,6 +19,7 @@
 
         <div class="vertical-section-container centered">
             <h3>Basic demo for paper-dynamic-forms</h3>
+
             <paper-dynamic-forms config="[[response]]"
                                  on-option-input-response="handler"
                                  on-text-input-response="handler">
@@ -51,11 +52,8 @@
              * @polymer
              * @demo demo/index.html
              */
-            class DemoElement extends Polymer.GestureEventListeners
-
-            (Polymer.Element) {
-                static get is()
-                {
+            class DemoElement extends Polymer.GestureEventListeners(Polymer.Element) {
+                static get is() {
                     return 'demo-element';
                 }
 
