@@ -1,20 +1,14 @@
 <link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../polymer/lib/mixins/gesture-event-listeners.html">
 <link rel="import" href="../../polymer/lib/elements/dom-if.html">
+
 <link rel="import" href="../../iron-ajax/iron-ajax.html">
-<link rel="import" href="../../paper-button/paper-button.html">
 
 <link rel="import" href="../paper-dynamic-forms.html">
 
 <dom-module id="demo-element">
     <template>
         <style is="custom-style" include="demo-pages-shared-styles">
-        </style>
-
-        <style>
-            paper-button.fancy {
-                background-color: var(--paper-green-500);
-                color: white;
-            }
         </style>
 
         <iron-ajax
@@ -31,12 +25,15 @@
                                  on-option-input-response="handler"></paper-dynamic-forms>
             <paper-dynamic-forms type="text-input" sentences="[[response.inputText]]"
                                  on-text-input-response="handler"></paper-dynamic-forms>
-            <template is="dom-if" if="[[hasOptions]]">
-                <paper-dynamic-forms type="text-input"
-                                     sentences="[[response.options]]"
-                                     on-text-input-response="handler"></paper-dynamic-forms>
-            </template>
-            <paper-button class="fancy" on-tap="createField">Create form field</paper-button>
+            <div class="container">
+                <template is="dom-if" if="[[hasOptions]]">
+                    <paper-dynamic-forms type="text-input"
+                                         sentences="[[response.options]]"
+                                         on-text-input-response="handler"></paper-dynamic-forms>
+                </template>
+            </div>
+
+            <button on-tap="createField">Create form field</button>
             <hr>
             <h2>Your awesome form</h2>
             <paper-dynamic-forms
@@ -56,7 +53,7 @@
              * @polymer
              * @demo demo/index.html
              */
-            class DemoElement extends Polymer.Element {
+            class DemoElement extends Polymer.GestureEventListeners(Polymer.Element) {
                 static get is() {
                     return 'demo-element';
                 }
