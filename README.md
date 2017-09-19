@@ -1,3 +1,4 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/alfonsorios96/paper-dynamic-forms)
 
 # Paper Dynamic Forms
 
@@ -10,12 +11,12 @@ This web component gives to the frontend developer a tool to create polls, quiz 
 ## Usage
 
 ```html
-<paper-dynamic-forms type="text-input" sentences="[[config]]"></paper-dynamic-forms>
+<paper-dynamic-forms config="[[config]]"></paper-dynamic-forms>
 ```
 
 The diffents types are: "text-input", "option-input", "checkbox-input" and "radio-button-input"
 
-The attribute 'sentences' is an array that defines the fields to make.
+The attribute 'config' is an array that defines the fields to make.
 
 Of course, in change of a js array config, you can use a Polymer array inside your own web component.
 
@@ -24,14 +25,26 @@ Other idea is use iron-ajax and a JSON file for declare your forms definitions a
 ```js
 let config = [{
     label: 'Some label',
+    type: 'type-input',
     options: ['option a', 'option b', 'option c']
 }];
 ```
 
-Inside of config (or whatever you want named) has two properties.
-The first one defines the placeholder or label to display to the user and the other one (options)
+Inside of config (or whatever you want named) has three properties.
+The first one defines the placeholder or label to display to the user, the second defines the type of your form field 
+and the third (options)
 is a string array with the options for the fields need it. E.g. checkbox-input or option-input.
 
+## Properties
+
+config: Array.  Defines the array of definition for your form elements.
+
+## Events
+
+option-input-response   Returns an object detail {model: 'this is the model defines in your json array', option: 'The value selected'}
+text-input-response   Returns an object detail {model: 'this is the model defines in your json array', option: 'The value in the field'}
+
+The goal is use the detail.model.item.label and detail.option to use logic!
 
 ## Contributing
 
@@ -43,7 +56,7 @@ is a string array with the options for the fields need it. E.g. checkbox-input o
 
 ## History
 
-We're (Aldo and me) were borried, so we decided contribute to the Polymer community with a innovador and awesome element. Enjoy it!
+We (Aldo and me) were borried, so we decided contribute to Polymer community with an awesome element. Enjoy it!
 
 ## Credits
 
