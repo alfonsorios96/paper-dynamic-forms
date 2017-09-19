@@ -1,3 +1,4 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/alfonsorios96/paper-dynamic-forms)
 
 # Paper Dynamic Forms
 
@@ -43,7 +44,7 @@ is a string array with the options for the fields need it. E.g. checkbox-input o
 
 ## History
 
-We're (Aldo and me) were borried, so we decided contribute to the Polymer community with a innovador and awesome element. Enjoy it!
+We (Aldo and me) were borried, so we decided contribute to Polymer community with an awesome element. Enjoy it!
 
 ## Credits
 
