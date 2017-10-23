@@ -8,41 +8,6 @@ This web component gives to the frontend developer a tool to create polls, quiz 
 
 `bower install --save alfonsorios96/paper-dynamic-forms`
 
-Para instalar istanbul y webtester
-`npm i -g t2ym/web-component-tester#wct6-plugin`
-`npm i -g t2ym/web-component-tester-istanbul#0.10.1-wct6`
-
-<snippet>bower i --save-dev t2ym/web-component-tester#wct6-plugin</snippet>
-
-
-### Coverage code
-
-Config istanbul:
-wct.conf.js 
-```js
-module.exports = {
-  verbose: true,
-  plugins: {
-    local: {
-      browsers: ['chrome', 'firefox', 'safari']
-    },
-    istanbul: {
-      dir:'./coverage',
-      reporters: ['text-summary', 'lcov'],
-      include: ['**/*.js'],
-      thresholds: {
-        global: {
-          statements:80,
-          branches: 80,
-          lines: 80,
-          functions: 80
-        }
-      }
-    }
-  }
-}
-```
-
 ## Usage
 
 ```html
@@ -96,9 +61,12 @@ The goal is use the detail.model.item.label and detail.option to use logic!
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+3. Install dependencies npm: `npm install`
+4. Install dependencies bower: `bower install`
+5. Test before anything hehe this is TDD: `npm run test`
+6. Commit your changes: `git commit -am 'Add some feature'`
+7. Push to the branch: `git push origin my-new-feature`
+8. Submit a pull request :D
 
 ## History
 
