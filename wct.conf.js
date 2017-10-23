@@ -2,12 +2,18 @@ module.exports = {
     verbose: true,
     plugins: {
         local: {
-            browsers: ['chrome', 'safari']
+            browsers: ['chrome', 'firefox', 'safari']
         },
         istanbul: {
             dir: './coverage',
             reporters: ['text-summary', 'lcov'],
-            include: ['**/*.js'],
+            include: [
+                '**/*.js'
+            ],
+            exclude: [
+                '/polymer/polymer.js',
+                '/platform/platform.js'
+            ],
             thresholds: {
                 global: {
                     statements: 80,

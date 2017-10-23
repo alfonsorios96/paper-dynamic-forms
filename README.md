@@ -6,11 +6,11 @@ This web component gives to the frontend developer a tool to create polls, quiz 
 
 ## Installation
 
-<snippet>bower install --save alfonsorios96/paper-dynamic-forms</snippet>
+`bower install --save alfonsorios96/paper-dynamic-forms`
 
 Para instalar istanbul y webtester
-<snippet>npm i -g t2ym/web-component-tester#wct6-plugin</snippet>
-<snippet>npm i -g t2ym/web-component-tester-istanbul#0.10.1</snippet>
+`npm i -g t2ym/web-component-tester#wct6-plugin`
+`npm i -g t2ym/web-component-tester-istanbul#0.10.1`
 
 <snippet>bower i --save-dev t2ym/web-component-tester#wct6-plugin</snippet>
 

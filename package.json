@@ -1,0 +1,26 @@
+{
+  "name": "paper-dynamic-forms",
+  "version": "0.2.2",
+  "description": "[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/alfonsorios96/paper-dynamic-forms)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "polymer test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfonsorios96/paper-dynamic-forms.git"
+  },
+  "keywords": [
+    "polymer2",
+    "element"
+  ],
+  "author": "@alfonsorios96, @aldo.aldaco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alfonsorios96/paper-dynamic-forms/issues"
+  },
+  "homepage": "https://github.com/alfonsorios96/paper-dynamic-forms#readme"
+}
