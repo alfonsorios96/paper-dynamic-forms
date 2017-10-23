@@ -2,7 +2,7 @@ module.exports = {
     verbose: true,
     plugins: {
         local: {
-            browsers: ['chrome', 'firefox', 'safari']
+            browsers: ['chrome', 'firefox']
         },
         istanbul: {
             dir: './coverage',
@@ -16,10 +16,10 @@ module.exports = {
             ],
             thresholds: {
                 global: {
-                    statements: 80,
-                    branches: 80,
-                    lines: 80,
-                    functions: 80
+                    statements: 100,
+                    branches: 100,
+                    lines: 100,
+                    functions: 100
                 }
             }
         }

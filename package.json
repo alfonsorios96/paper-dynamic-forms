@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "polymer test"
+    "test": "polymer test",
+    "coverage": "open coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/alfonsorios96/paper-dynamic-forms/issues"
   },
-  "homepage": "https://github.com/alfonsorios96/paper-dynamic-forms#readme"
+  "homepage": "https://github.com/alfonsorios96/paper-dynamic-forms#readme",
+  "devDependencies": {
+    "web-component-tester": "github:t2ym/web-component-tester#wct6-plugin",
+    "web-component-tester-istanbul": "github:t2ym/web-component-tester-istanbul#0.10.1-wct6"
+  }
 }

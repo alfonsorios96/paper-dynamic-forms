@@ -1,5 +1,6 @@
-'use strict';
 (function PaperDynamicFormsDefinition(customElements) {
+    'use strict';
+
     /**
      * `paper-dynamic-forms`
      * This component gives a easy and comfortable way to magives a easy and comfortable way to make dynamics prohectske dynamics projects. E.g. polls
@@ -7,6 +8,20 @@
      * @customElement
      * @polymer
      * @demo demo/index.html
+     */
+
+    /**
+     * Fired when `input.value` changes.
+     *
+     * @event text-input-response
+     * @return {model: {iterator item}, option: 'value: string'} newAwesome New level of awesomeness.
+     */
+
+    /**
+     * Fired when `select.value` changes.
+     *
+     * @event option-input-response
+     * @return {model: {iterator item}, option: 'value: string'} newAwesome New level of awesomeness.
      */
     class PaperDynamicForms extends Polymer.Element {
         static get is() {

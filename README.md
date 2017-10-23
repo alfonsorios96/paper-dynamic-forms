@@ -10,7 +10,7 @@ This web component gives to the frontend developer a tool to create polls, quiz 
 
 Para instalar istanbul y webtester
 `npm i -g t2ym/web-component-tester#wct6-plugin`
-`npm i -g t2ym/web-component-tester-istanbul#0.10.1`
+`npm i -g t2ym/web-component-tester-istanbul#0.10.1-wct6`
 
 <snippet>bower i --save-dev t2ym/web-component-tester#wct6-plugin</snippet>
 
@@ -30,7 +30,6 @@ module.exports = {
       dir:'./coverage',
       reporters: ['text-summary', 'lcov'],
       include: ['**/*.js'],
-      exclude: ['/!(nuestro-componente)/**/*.js'],
       thresholds: {
         global: {
           statements:80,
