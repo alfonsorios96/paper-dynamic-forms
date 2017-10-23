@@ -8,6 +8,44 @@
 <dom-module id="demo-element">
     <template>
         <style is="custom-style" include="demo-pages-shared-styles">
+            div {
+                width: 100%;
+                margin-top: 30px;
+                border: 2px solid;
+                background-color: #F4F4F4;
+                padding: 30px;
+            }
+            h2,h3 {
+                font-family: sans-serif;
+            }
+            .create-button {
+                width: 70%;
+                height: 40px;
+                margin: 20px auto;
+                text-transform: uppercase;
+                font-size: 15px;
+                border-radius: 3px;
+                border: 1px solid black;
+                background-color: black;
+                color: white;
+            }
+            .create-button.active.focus,
+            .create-button.active:focus,
+            .create-button.focus,
+            .create-button.focus:active,
+            .create-button:active:focus,
+            .create-button:focus {
+                outline: 0 !important;
+                outline-offset: 0  !important;
+                background-image: none  !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none  !important;
+            }
+            .footer {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+            }
         </style>
 
         <iron-ajax
@@ -18,8 +56,7 @@
                 debounce-duration="300"></iron-ajax>
 
         <div class="vertical-section-container centered">
-            <h3>Basic demo for paper-dynamic-forms</h3>
-
+            <h2>Your awesome form</h2>
             <paper-dynamic-forms config="[[response]]"
                                  on-option-input-response="handler"
                                  on-text-input-response="handler">
@@ -31,13 +68,12 @@
                 </paper-dynamic-forms>
             </template>
 
-            <button on-tap="createField">Create form field</button>
+            <button class="create-button" on-tap="createField">Create form field</button>
 
             <hr>
-            <h2>Your awesome form</h2>
             <paper-dynamic-forms
                     config="[[sentences]]"></paper-dynamic-forms>
-
+            <h3 class="footer">Basic demo for paper-dynamic-forms</h3>
         </div>
     </template>
 

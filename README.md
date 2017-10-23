@@ -31,9 +31,20 @@ let config = [{
 ```
 
 Inside of config (or whatever you want named) has three properties.
-The first one defines the placeholder or label to display to the user, the second defines the type of your form field 
+The first one defines the placeholder or label to display to the user, the second defines the type of your form field
 and the third (options)
 is a string array with the options for the fields need it. E.g. checkbox-input or option-input.
+
+### Styling
+
+`<paper-dynamic-forms>` provides the following custom properties and mixins
+for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--paper-dynamic-forms-mixin` | Mixin with position of items | `Display: flex, Flex-direction: row`
+`--paper-dynamic-forms-bg-color` | Variable applied to the background-color of container | `transparent`
+`--paper-dynamic-forms-color` | Variable applied to the background-color of container | `transparent`
 
 ## Properties
 

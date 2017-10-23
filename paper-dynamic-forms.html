@@ -1,4 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../shadycss/apply-shim.html">
+
 
 <link rel="import" href="../polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
@@ -15,14 +17,41 @@
 <dom-module id="paper-dynamic-forms">
     <template>
         <style>
+            div{
+                --paper-dynamic-form-mixin: {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                };
+            }
             .container {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
+                color: var(--paper-dynamic-forms-color, #000000);
+                background-color: var(--paper-dynamic-forms-bg-color, transparent);
+                @apply --paper-dynamic-form-mixin;
             }
-            .item {
-                margin-right: 15px;
+            paper-dropdown-menu {
+                --paper-dropdown-menu: {
+                    color: #000;
+                };
             }
+            paper-input {
+                /* Label and underline color when the input is not focused */
+                --paper-input-container-color: black;
+                /* Label and underline color when the input is focused */
+                --paper-input-container-focus-color: black;
+                /* Label and underline color when the input is invalid */
+                --paper-input-container-invalid-color: red;
+                /* Input foreground color */
+                --paper-input-container-input-color: black;
+
+                --paper-input-container-label-focus: {
+                    color: #000000;
+                };
+                --paper-input-container-underline-focus: {
+                    border: 2px solid;
+                };
+            }
+
         </style>
         <div class="container">
             <template is="dom-repeat" items="[[config]]">
