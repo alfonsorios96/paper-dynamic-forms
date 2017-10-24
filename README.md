@@ -1,4 +1,5 @@
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/alfonsorios96/paper-dynamic-forms)
+[![Build Status](https://travis-ci.org/alfonsorios96/paper-dynamic-forms.svg?branch=0.2.5)](https://travis-ci.org/alfonsorios96/paper-dynamic-forms)
 
 # Paper Dynamic Forms
 
