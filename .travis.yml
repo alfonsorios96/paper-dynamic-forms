@@ -3,7 +3,8 @@ node_js:
   - "iojs"
   - "6"
 install:
- npm install -g bower
+    - cd paper-dynamic-forms
+    - npm install -g bower
     - npm install
     - bower install
 script:
