@@ -2,7 +2,7 @@
   "name": "paper-dynamic-forms",
   "description": "This component gives a easy and comfortable way to magives a easy and comfortable way to make dynamics prohectske dynamics projects. E.g. polls",
   "main": "paper-dynamic-forms.html",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "dependencies": {
     "polymer": "Polymer/polymer#2.0.0",
     "paper-input": "PolymerElements/paper-input#2.0.2",
