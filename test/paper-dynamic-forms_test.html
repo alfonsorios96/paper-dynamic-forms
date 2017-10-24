@@ -26,6 +26,108 @@
         setup(function () {
             el = fixture('default');
         });
+
+        suite('isTextForm', function () {
+            test('type is text-input', function () {
+                let item = {
+                    type: 'text-input'
+                };
+                assert.isTrue(el.isTextForm(item));
+            });
+            test('type is not text-input', function () {
+                let item = {
+                    type: 'option-input'
+                };
+                assert.isFalse(el.isTextForm(item));
+            });
+        });
+
+        suite('isOptionForm', function () {
+            test('type is option-input', function () {
+                let item = {
+                    type: 'option-input'
+                };
+                assert.isTrue(el.isOptionForm(item));
+            });
+            test('type is not text-input', function () {
+                let item = {
+                    type: 'text-input'
+                };
+                assert.isFalse(el.isOptionForm(item));
+            });
+        });
+
+        suite('isCheckboxForm', function () {
+            test('type is checkbox-input', function () {
+                let item = {
+                    type: 'checkbox-input'
+                };
+                assert.isTrue(el.isCheckboxForm(item));
+            });
+            test('type is not checkbox-input', function () {
+                let item = {
+                    type: 'text-input'
+                };
+                assert.isFalse(el.isCheckboxForm(item));
+            });
+        });
+
+        suite('isRadioButtonForm', function () {
+            test('type is checkbox-input', function () {
+                let item = {
+                    type: 'radio-button-input'
+                };
+                assert.isTrue(el.isRadioButtonForm(item));
+            });
+            test('type is not checkbox-input', function () {
+                let item = {
+                    type: 'text-input'
+                };
+                assert.isFalse(el.isRadioButtonForm(item));
+            });
+        });
+
+        suite('optionSelectedHandler', function () {
+            test('option-input-response fired', function () {
+                let data = {
+                    model: 'item',
+                    detail: {
+                        value: 'value'
+                    }
+                };
+                let response = {
+                    detail: {
+                        model: 'item',
+                        option: 'value'
+                    }
+                };
+                el.addEventListener('option-input-response', function (event) {
+                    assert.deepEqual(event.detail, response.detail);
+                });
+                el.optionSelectedHandler(data);
+            });
+        });
+
+        suite('textHandler', function () {
+            test('text-input-response fired', function () {
+                let data = {
+                    model: 'item',
+                    detail: {
+                        value: 'value'
+                    }
+                };
+                let response = {
+                    detail: {
+                        model: 'item',
+                        option: 'value'
+                    }
+                };
+                el.addEventListener('text-input-response', function (event) {
+                    assert.deepEqual(event.detail, response.detail);
+                });
+                el.textHandler(data);
+            });
+        });
     });
 </script>
 

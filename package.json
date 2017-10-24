@@ -1,6 +1,6 @@
 {
   "name": "paper-dynamic-forms",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/alfonsorios96/paper-dynamic-forms)",
   "main": "index.js",
   "directories": {
