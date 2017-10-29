@@ -30,62 +30,55 @@
 
         static get properties() {
             return {
+                /*
+                * @property config. Defines the form elements will be composed the component
+                The structure for each object are these:
+                {
+                    label: 'Some label',
+                    type: 'type-input',
+                    options: ['option a', 'option b', 'option c']
+                }
+                The property options is optional,
+                The label is the title/placeholder of field title.
+                The type allows choose different forms: inputs, select..., the valid keys are: 'type-input' ......
+                */
                 config: {
-                    type: Array
+                    type: Array,
+                    value: []
                 }
             };
         }
 
-        isTextForm(item) {
-            if (item.type === 'text-input') {
-                return true;
-            } else {
-                return false;
-            }
+        isTextForm(formItem) {
+            return formItem.type === 'text-input';
         }
 
-        isOptionForm(item) {
-            if (item.type === 'option-input') {
-                return true;
-            } else {
-                return false;
-            }
+        isOptionForm(formItem) {
+            return formItem.type === 'option-input';
         }
 
-        isCheckboxForm(item) {
-            if (item.type === 'checkbox-input') {
-                return true;
-            } else {
-                return false;
-            }
+        isCheckboxForm(formItem) {
+            return formItem.type === 'checkbox-input';
         }
 
-        isRadioButtonForm(item) {
-            if (item.type === 'radio-button-input') {
-                return true;
-            } else {
-                return false;
-            }
+        isRadioButtonForm(formItem) {
+            return formItem.type === 'radio-button-input';
         }
 
         optionSelectedHandler(event) {
-            let payload = {
-                model: event.model,
-                option: event.detail.value
-            };
-            this.dispatchEvent(new CustomEvent('option-input-response', {
-                bubbles: true,
-                composed: true,
-                detail: payload
-            }));
+            this.eventHandler(event.model, event.detail.value, 'option-input-response');
         }
 
         textHandler(event) {
+            this.eventHandler(event.model, event.detail.value, 'text-input-response');
+        }
+
+        eventHandler(model, value, eventName) {
             let payload = {
-                model: event.model,
-                option: event.detail.value
+                model: model,
+                option: value
             };
-            this.dispatchEvent(new CustomEvent('text-input-response', {
+            this.dispatchEvent(new CustomEvent(eventName, {
                 bubbles: true,
                 composed: true,
                 detail: payload

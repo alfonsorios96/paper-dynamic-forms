@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../webcomponentsjs/webcomponents-lite.js">
 <link rel="import" href="../shadycss/apply-shim.html">
 
 
@@ -57,32 +58,32 @@
 
         </style>
         <div class="container">
-            <template is="dom-repeat" items="[[config]]">
-                <template is="dom-if" if="[[isTextForm(item)]]">
-                    <paper-input class="item" label="[[item.label]]" on-value-changed="textHandler"></paper-input>
+            <template is="dom-repeat" items="[[config]]" as="controlForm">
+                <template is="dom-if" if="[[isTextForm(controlForm)]]" restamp="true">
+                    <paper-input class="item" label="[[controlForm.label]]" on-value-changed="textHandler"></paper-input>
                 </template>
 
-                <template is="dom-if" if="[[isOptionForm(item)]]">
-                    <paper-dropdown-menu label="[[item.label]]" on-value-changed="optionSelectedHandler">
+                <template is="dom-if" if="[[isOptionForm(controlForm)]]" restamp="true">
+                    <paper-dropdown-menu label="[[controlForm.label]]" on-value-changed="optionSelectedHandler">
                         <paper-listbox slot="dropdown-content">
-                            <template is="dom-repeat" items="[[item.options]]" as="option">
+                            <template is="dom-repeat" items="[[controlForm.options]]" as="option">
                                 <paper-item class="item">[[option]]</paper-item>
                             </template>
                         </paper-listbox>
                     </paper-dropdown-menu>
                 </template>
 
-                <template is="dom-if" if="[[isCheckboxForm(item)]]">
+                <template is="dom-if" if="[[isCheckboxForm(controlForm)]]" restamp="true">
                     <h3>[[item.label]]</h3>
-                    <template is="dom-repeat" items="[[item.options]]" as="option">
+                    <template is="dom-repeat" items="[[controlForm.options]]" as="option">
                         <paper-checkbox class="item">[[option]]</paper-checkbox>
                     </template>
-                </template>
+                </template >
 
-                <template is="dom-if" if="[[isRadioButtonForm(item)]]">
+                <template is="dom-if" if="[[isRadioButtonForm(controlForm)]]" restamp="true">
                     <h3>[[sentence.label]]</h3>
                     <paper-radio-group>
-                        <template is="dom-repeat" items="[[item.options]]" as="option">
+                        <template is="dom-repeat" items="[[controlForm.options]]" as="option">
                             <paper-radio-button class="item" name="[[option]]">[[option]]</paper-radio-button>
                         </template>
                     </paper-radio-group>
